@@ -60,7 +60,7 @@
         </button>
 
         <nav class="offcanvas-md offcanvas-end p-3 vh-100 shadow bg-body position-fixed top-0 end-0" tabindex="-1"
-            id="sidebarMenu" style="width: 280px; z-index: 1040;">
+            id="sidebarMenu" style="width: 280px; z-index: 1055;">
 
             <div class="offcanvas-header d-md-none border-bottom mb-3">
                 <h5 class="offcanvas-title fw-bold">Menú</h5>
@@ -154,6 +154,18 @@
                     <div class="col-sm-2 mb-3">
                         <div class="card shadow-sm h-100 bg-body">
                             <div class="card-body text-center d-flex flex-column justify-content-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor"
+                                    class="mb-2 text-success mx-auto" viewBox="0 0 24 24">
+                                    <path fill="currentColor"
+                                        d="m23.693 10.706l-4.73-8.185c-.41-.71-1.417-1.294-2.24-1.294h-9.45c-.82 0-1.831.584-2.24 1.294L.306 10.706c-.41.71-.41 1.873 0 2.584l4.725 8.189c.41.71 1.417 1.294 2.24 1.294h9.455c.82 0 1.826-.584 2.24-1.294l4.726-8.19c.41-.71.41-1.873 0-2.583zM10.976 5.755c0-.537.438-.975.974-.975s.975.438.975.975v5.821a.976.976 0 0 1-1.948 0zm.974 12.43a6.616 6.616 0 0 1-6.607-6.609A6.64 6.64 0 0 1 8.01 6.272a.866.866 0 0 1 1.214.18a.866.866 0 0 1-.178 1.213a4.876 4.876 0 0 0 5.812 7.827a4.88 4.88 0 0 0 1.967-3.916a4.9 4.9 0 0 0-1.986-3.925a.87.87 0 0 1-.183-1.214a.87.87 0 0 1 1.214-.183a6.63 6.63 0 0 1 2.687 5.322a6.613 6.613 0 0 1-6.608 6.608" />
+                                </svg>
+                                <p class="mb-0 fw-medium">Spring Boot</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 mb-3">
+                        <div class="card shadow-sm h-100 bg-body">
+                            <div class="card-body text-center d-flex flex-column justify-content-center">
                                 <i class="fa-brands fa-html5 fa-3x mb-2 text-success"></i>
                                 <p class="mb-0 fw-medium">HTML</p>
                             </div>
@@ -215,7 +227,8 @@
                                 </div>
 
                                 <div class="d-flex gap-3">
-                                    <a href="#" class="fw-bold text-success text-decoration-none">Green-Nova</a>
+                                    <a href="https://cuyox3.github.io/proyectoIntegrador/"
+                                        class="fw-bold text-success text-decoration-none">Green-Nova</a>
                                     <a href="https://github.com/Cuyox3/proyectoIntegrador"
                                         class="fw-bold text-body text-decoration-none">Github</a>
                                 </div>
@@ -382,6 +395,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
+        //Modo obscuro
         const themeToggleBtn = document.getElementById('theme-toggle');
         const htmlElement = document.documentElement;
 
@@ -397,6 +411,23 @@
             }
         });
 
+        // Cerrar el menú offcanvas en móviles al hacer clic en un enlace
+        document.addEventListener('DOMContentLoaded', () => {
+            const sidebarMenu = document.getElementById('sidebarMenu');
+            const navLinks = sidebarMenu.querySelectorAll('.nav-link');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    // Verificamos si el menú está abierto (clase 'show' se activa en modo celular)
+                    if (sidebarMenu.classList.contains('show')) {
+                        const bsOffcanvas = bootstrap.Offcanvas.getInstance(sidebarMenu);
+                        if (bsOffcanvas) {
+                            bsOffcanvas.hide(); // Cierra el menú suavemente
+                        }
+                    }
+                });
+            });
+        });
 
     </script>
 </body>
